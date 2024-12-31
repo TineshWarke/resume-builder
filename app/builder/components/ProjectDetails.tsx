@@ -1,7 +1,7 @@
 'use client';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 type Project = {
   title: string;
@@ -23,11 +23,11 @@ export default function ProjectsDetails() {
 
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-  useEffect(() => {
-    if (fields.length === 0) {
-      append({ title: '', description: '', technologies: '', liveDemo: '' });
-    }
-  }, [append, fields.length]);
+  // useEffect(() => {
+  //   if (fields.length === 0) {
+  //     append({ title: '', description: '', technologies: '', liveDemo: '' });
+  //   }
+  // }, [append, fields.length]);
 
   const handleNext = () => {
     if (currentProjectIndex < fields.length - 1) {
@@ -44,13 +44,12 @@ export default function ProjectsDetails() {
   const handleRemove = (index: number) => {
     remove(index);
     if (index === fields.length - 1 && currentProjectIndex > 0) {
-      // If removing the last project and not the first, move to the previous project
       setCurrentProjectIndex(currentProjectIndex - 1);
     }
   };
 
   return (
-    <div className="m-8 p-8 bg-transparent max-h-[600px] grid gap-6">
+    <div className="m-8 p-8 bg-transparent max-h-[600px] grid gap-6 w-full">
       <h3 className="text-2xl font-bold text-center text-teal-500 mb-0">
         Projects
       </h3>
@@ -94,27 +93,29 @@ export default function ProjectsDetails() {
           </motion.div>
         )}
       </div>
-      <div className="flex justify-between">
-        <button
-          onClick={handlePrevious}
-          disabled={currentProjectIndex === 0}
-          className="btn btn-outline text-teal-500 hover:bg-teal-300 btn-sm border-2 hover:border-teal-600 hover:text-teal-900"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={currentProjectIndex === fields.length - 1}
-          className="btn btn-outline text-teal-500 hover:bg-teal-300 btn-sm border-2 hover:border-teal-600 hover:text-teal-900"
-        >
-          Next
-        </button>
-      </div>
+      { fields.length !== 0 &&
+        <div className="flex justify-between">
+          <button
+            onClick={handlePrevious}
+            disabled={currentProjectIndex === 0}
+            className="btn btn-outline text-teal-500 hover:bg-teal-300 btn-sm border-2 hover:border-teal-600 hover:text-teal-900"
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={currentProjectIndex === fields.length - 1}
+            className="btn btn-outline text-teal-500 hover:bg-teal-300 btn-sm border-2 hover:border-teal-600 hover:text-teal-900"
+          >
+            Next
+          </button>
+        </div>
+      }
       {fields.length < 3 && (
         <button
           type="button"
           onClick={() => append({ title: '', description: '', technologies: '', liveDemo: '' })}
-          className="btn btn-outline text-green-500 hover:bg-green-300 px-6 py-2 border-2 hover:border-black"
+          className="btn btn-outline w-full text-teal-500 hover:bg-teal-300 px-6 py-2 border-2 hover:border-black"
         >
           Add Project
         </button>

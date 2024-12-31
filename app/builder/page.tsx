@@ -14,7 +14,7 @@ import ExtracurricularCertificates from './components/ExtracurricularCertificate
 import RelevantCoursework from './components/RelevantCoursework';
 
 export default function BuilderPage() {
-    const methods = useForm<ResumeData>({ defaultValues: { education: [], experience: [] } });
+    const methods = useForm<ResumeData>({ defaultValues: { experience: [], projects: [], skills: [], education: [], coursework: [], extracurriculars: [] } });
 
     const onSubmit = (data: ResumeData) => {
         console.log(data); // Here you can process or send data to an API
@@ -120,7 +120,7 @@ export default function BuilderPage() {
                             <button
                                 // type="submit"
                                 onClick={downloadPDF}
-                                className="btn btn-outline text-black border-2 text-xl rounded shadow-lg bg-gray-400 hover:bg-gray-600 hover:text-white"
+                                className="btn btn-outline text-gray-500 hover:bg-gray-300 border-2 text-lg hover:border-black"
                             >
                                 Download PDF
                             </button>

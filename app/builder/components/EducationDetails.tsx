@@ -1,13 +1,13 @@
-'use client'
+// 'use client'
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function EducationDetails() {
   const { control, register } = useFormContext();
   const { fields, append, remove } = useFieldArray({ control, name: 'education' });
 
-  // Framer Motion variants
+  // Framer Motion variants 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,9 +21,9 @@ export default function EducationDetails() {
     visible: { opacity: 1, x: 0 },
   };
 
-  useEffect(() => {
-    append({ degree: '', institution: '' })
-  }, [])
+  // useEffect(() => {
+  //   append({ degree: '', institution: '' })
+  // }, [])
 
   return (
     <motion.div
@@ -64,7 +64,7 @@ export default function EducationDetails() {
           <motion.button
             type="button"
             onClick={() => append({ degree: '', institution: '' })}
-            className="btn btn-outline w-full text-green-500 hover:bg-green-300 mt-4 px-3 border-2 hover:border-black"
+            className="btn btn-outline w-full text-amber-500 hover:bg-amber-300 mt-4 px-3 border-2 hover:border-black"
             variants={itemVariants}
           >
             Add Education

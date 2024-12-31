@@ -42,7 +42,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = () => {
 
   return (
     <div className="mb-6 w-full px-20">
-      <h3 className="text-2xl font-bold mb-4 text-rose-500">Skills</h3>
+      <h3 className="text-2xl font-bold mb-4 text-rose-500">Technical Skills</h3>
       <div className="flex flex-wrap gap-3 mb-4">
         <AnimatePresence>
           {skills.map((skill, index) => (

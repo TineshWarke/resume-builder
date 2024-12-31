@@ -1,7 +1,7 @@
-'use client'
+// 'use client'
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function RelevantCoursework() {
   const { control, register } = useFormContext();
@@ -21,9 +21,9 @@ export default function RelevantCoursework() {
     visible: { opacity: 1, x: 0 },
   };
 
-  useEffect(() => {
-    append({ courseName: '' });
-  }, []);
+  // useEffect(() => {
+  //   append({ courseName: '' });
+  // }, []);
 
   return (
     <motion.div
@@ -58,7 +58,7 @@ export default function RelevantCoursework() {
         <motion.button
           type="button"
           onClick={() => append({ courseName: '' })}
-          className="btn btn-outline w-full text-green-500 hover:bg-green-300 mt-4 px-3 border-2 hover:border-black"
+          className="btn btn-outline w-full text-emerald-500 hover:bg-emerald-300 mt-4 px-3 border-2 hover:border-black"
           variants={itemVariants}
         >
           Add Course
