@@ -17,7 +17,7 @@ export const downloadPDF = async () => {
 export default function ResumePreview() {
   const { watch } = useFormContext();
   const data = watch();
-  const [template, setTemplate] = useState<Number>(1);
+  const [template, setTemplate] = useState<number>(1);
 
   const formatDate = (dateString: string) => {
     if (!dateString) return '';

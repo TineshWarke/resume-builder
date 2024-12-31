@@ -3,10 +3,7 @@ import { useFormContext } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
-// Define Props for the Component if needed
-interface SkillsSectionProps { }
-
-const SkillsSection: React.FC<SkillsSectionProps> = () => {
+const SkillsSection: React.FC = () => {
   const { register, setValue, watch } = useFormContext();
   const [currentSkill, setCurrentSkill] = useState<string>('');
   const [skills, setSkills] = useState<string[]>([]);
@@ -45,7 +42,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = () => {
       <h3 className="text-2xl font-bold mb-4 text-rose-500">Technical Skills</h3>
       <div className="flex flex-wrap gap-3 mb-4">
         <AnimatePresence>
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <motion.div
               key={skill}
               initial={{ opacity: 0, scale: 0.9 }}
