@@ -4,6 +4,38 @@ import domToImage from 'dom-to-image';
 import { useState } from 'react';
 import Image from 'next/image';
 
+interface Experience {
+  company: string;
+  jobTitle: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+interface Project {
+  title: string;
+  technologies: string;
+  liveDemo: string;
+  description: string;
+}
+
+interface Education {
+  institution: string;
+  degree: string;
+  year: string;
+  score: string;
+}
+
+interface Course {
+  courseName: string;
+}
+
+interface Extracurricular {
+  activity: string;
+  organization: string;
+  year: string;
+}
+
 export const downloadPDF = async () => {
   const element = document.getElementById('resume-preview');
   if (!element) return;
@@ -48,20 +80,20 @@ export default function ResumePreview() {
                 </p>
               }
             </div>
-            <hr />
 
             {data.summary &&
               <div>
-                <h2 className="text-sm font-bold">Summary</h2>
-                <p className='text-xs text-justify indent-4'>{data.summary}</p>
+                <h2 className="text-sm font-bold">Profile Summary</h2>
                 <hr />
+                <p className='text-xs text-justify indent-4'>{data.summary}</p>
               </div>
             }
 
             {data.experience.length !== 0 &&
               <div>
                 <h2 className="text-sm font-bold">Experience</h2>
-                {data.experience?.map((exp: any, index: number) => (
+                <hr />
+                {data.experience?.map((exp: Experience, index: number) => (
                   <div key={index}>
                     <span className='flex gap-8 justify-between'>
                       <p className='text-xs font-semibold'>{exp.company} - {exp.jobTitle}</p>
@@ -73,14 +105,14 @@ export default function ResumePreview() {
                     <p className='text-xs text-justify indent-4'>{exp.description}</p>
                   </div>
                 ))}
-                <hr />
               </div>
             }
 
             {data.projects.length !== 0 &&
               <div>
                 <h2 className="text-xs font-bold">Projects</h2>
-                {data.projects?.map((pro: any, index: number) => (
+                <hr />
+                {data.projects?.map((pro: Project, index: number) => (
                   <div key={index}>
                     <div className='flex items-start gap-2'>
                       <p className='text-xs font-semibold'>{pro.title}</p>
@@ -94,53 +126,59 @@ export default function ResumePreview() {
                     <p className='text-xs text-justify indent-4'>{pro.description}</p>
                   </div>
                 ))}
-                <hr />
               </div>
             }
 
             {data.skills.length !== 0 &&
               <div>
                 <h2 className="text-sm font-bold">Technical Skills</h2>
-                <p className='text-xs'>{data.skills}</p>
                 <hr />
+                <p className='text-xs'>{data.skills}</p>
               </div>
             }
 
             {data.education.length !== 0 &&
               <div>
                 <h2 className="text-sm font-bold">Education</h2>
-                {data.education?.map((edu: any, index: number) => (
+                <hr />
+                {data.education?.map((edu: Education, index: number) => (
                   <div key={index}>
-                    <p className='text-xs'>{edu.degree} - {edu.institution}</p>
+                    <div className='flex justify-between'>
+                      <p className='text-xs font-semibold'>{edu.institution} </p>
+                      <p className='text-xs'>{formatDate(edu.year)}</p>
+                    </div>
+                    <div className='flex justify-between'>
+                      <p className='text-xs'>{edu.degree} </p>
+                      <p className='text-xs'>{edu.score} </p>
+                    </div>
                   </div>
                 ))}
-                <hr />
               </div>
             }
 
             {data.coursework.length !== 0 &&
               <div>
                 <h2 className="text-sm font-bold">Relevant Coursework</h2>
-                {data.coursework?.map((course: any, index: number) => (
-                  <div key={index}>
-                    <p className='text-xs'>{course.courseName}</p>
-                  </div>
-                ))}
                 <hr />
+                <div className='grid grid-cols-2'>
+                  {data.coursework?.map((course: Course, index: number) => (
+                    <div key={index}>
+                      <p className='text-xs'>• {course.courseName}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             }
 
             {data.extracurriculars.length !== 0 &&
               <div>
                 <h2 className="text-sm font-bold">Extracurriculars / Certificates</h2>
-                {data.extracurriculars?.map((other: any, index: number) => (
-                  <div key={index}>
-                    <p className='text-xs'>{other.activity}</p>
-                    <p className='text-xs'>{other.organization}</p>
-                    <p className='text-xs'>{other.year}</p>
-                  </div>
-                ))}
                 <hr />
+                {data.extracurriculars?.map((other: Extracurricular, index: number) => (
+                  <li className="text-xs flex justify-between items-center space-x-1" key={index}>
+                    <p>• {other.activity} - {other.organization} - {formatDate(other.year)}</p>
+                  </li>
+                ))}
               </div>
             }
           </div>
@@ -158,8 +196,8 @@ export default function ResumePreview() {
       <div className='p-8 mr-8 h-[90vh]'>
         <div onClick={() => setTemplate(1)}
           className={`h-[25vh] w-[calc(25vh/1.414)] mx-auto cursor-pointer bg-white m-5 rounded-md border-accent ${template === 1 ? 'border-4' : ''}`}>
-            <Image src={'/template1.png'} alt='' width={130} height={130} className='rounded-md'/>
-          </div>
+          <Image src={'/template1.png'} alt='' width={130} height={130} className='rounded-md' />
+        </div>
         <div onClick={() => setTemplate(2)}
           className={`h-[25vh] w-[calc(25vh/1.414)] mx-auto cursor-pointer bg-white m-5 rounded-md border-accent ${template === 2 ? 'border-4' : ''}`}></div>
         <div onClick={() => setTemplate(3)}

@@ -53,6 +53,7 @@ export default function ExtracurricularCertificates() {
           <input
             {...register(`extracurriculars.${index}.year`)}
             placeholder="Year"
+            type='date'
             className="input focus:border-sky-800 w-full mb-2 shadow-lg bg-transparent border-2 border-sky-500 font-semibold text-sky-900"
           />
           <button

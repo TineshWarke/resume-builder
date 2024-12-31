@@ -41,13 +41,24 @@ export default function EducationDetails() {
       {fields.map((field, index) => (
         <motion.div key={field.id} className="mb-4" variants={itemVariants}>
           <input
+            {...register(`education.${index}.institution`)}
+            placeholder="Institution"
+            className="input focus:border-amber-800 w-full mb-2 shadow-lg bg-transparent border-2 border-amber-500 font-semibold text-amber-900"
+          />
+          <input
             {...register(`education.${index}.degree`)}
             placeholder="Degree"
             className="input focus:border-amber-800 w-full mb-2 shadow-lg bg-transparent border-2 border-amber-500 font-semibold text-amber-900"
           />
           <input
-            {...register(`education.${index}.institution`)}
-            placeholder="Institution"
+            {...register(`education.${index}.score`)}
+            placeholder="Score"
+            className="input focus:border-amber-800 w-full mb-2 shadow-lg bg-transparent border-2 border-amber-500 font-semibold text-amber-900"
+          />
+          <input
+            {...register(`education.${index}.year`)}
+            placeholder="Year"
+            type='date'
             className="input focus:border-amber-800 w-full mb-2 shadow-lg bg-transparent border-2 border-amber-500 font-semibold text-amber-900"
           />
           <button
